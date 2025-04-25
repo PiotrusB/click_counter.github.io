@@ -18,18 +18,18 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database-compat.js"></script>
 
   <script>
-    // Paste your Firebase config here
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyASmkKEtZNKaZLtw5Kb1hNUtTuJCzJqgqQ",
+  authDomain: "test-project-click-counter.firebaseapp.com",
+  projectId: "test-project-click-counter",
+  storageBucket: "test-project-click-counter.firebasestorage.app",
+  messagingSenderId: "126782153734",
+  appId: "1:126782153734:web:608ebd7d91a9308a890f87"
+};
 
-    firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
     const db = firebase.database();
     const countRef = db.ref('clicks');
 
