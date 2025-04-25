@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Global Click Counter</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    button { font-size: 24px; padding: 10px 20px; }
+    p { font-size: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🌍 Global Click Counter</h1>
+  <button onclick="handleClick()">Click Me!</button>
+  <p id="counter">Loading...</p>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database-compat.js"></script>
+
+  <script>
+    // Paste your Firebase config here
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const countRef = db.ref('clicks');
+
+    // Update the counter in real time
+    countRef.on('value', snapshot => {
+      document.getElementById('counter').textContent =
+        'Total Clicks: ' + (snapshot.val() || 0);
+    });
+
+    // Increase the counter when button is clicked
+    function handleClick() {
+      countRef.transaction(current => (current || 0) + 1);
+    }
+  </script>
+</body>
+</html>
